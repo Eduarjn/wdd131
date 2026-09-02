@@ -29,13 +29,15 @@ header {
   padding-top: 1rem;
 }
 
-.course-title {
+#course-title {
   display: block;
-  font-size: 1.4rem;
+  font-family: "Roboto Slab", Georgia, serif;
+  font-size: 1.5rem;
   font-weight: 700;
   padding-bottom: 1rem;
 }
 
+/* ---------- Navigation (Flex) ---------- */
 nav {
   display: flex;
   flex-wrap: wrap;
@@ -51,6 +53,7 @@ nav a {
   font-size: 1.05rem;
   padding: 0.6rem 1.2rem;
   border-radius: 4px;
+  /* the border is always there, only its color changes: no layout shift */
   border-bottom: 3px solid transparent;
   transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
@@ -60,6 +63,11 @@ nav a:focus-visible {
   background-color: var(--white);
   color: var(--nav-bg);
   border-bottom-color: var(--accent);
+}
+
+nav a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* ---------- Main / Grid ---------- */
@@ -77,6 +85,7 @@ h1 {
   grid-column: 1 / -1;
   margin: 0;
   text-align: center;
+  font-family: "Roboto Slab", Georgia, serif;
   font-size: 2rem;
   color: var(--primary);
 }
@@ -120,6 +129,7 @@ h1 {
 }
 
 .card-body img {
+  flex-shrink: 0;
   border-radius: 6px;
   height: auto;
   max-width: 100%;
@@ -170,5 +180,11 @@ footer p {
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  nav a {
+    transition: none;
   }
 }
