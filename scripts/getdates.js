@@ -1,6 +1,9 @@
-// W01 - Dynamic footer data
-const yearSpan = document.querySelector("#currentyear");
-const lastModifiedParagraph = document.querySelector("#lastModified");
+// WDD 131 - W01 - dates for the footer
 
+// current year for the copyright
+const yearSpan = document.querySelector("#currentyear");
 yearSpan.textContent = new Date().getFullYear();
-lastModifiedParagraph.textContent = `Last Modification: ${document.lastModified}`;
+
+// date when the file was last modified
+const lastModified = document.querySelector("#lastModified");
+lastModified.textContent = `Last Modification: ${document.lastModified}`;

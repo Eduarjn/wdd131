@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WDD 131 &ndash; Dynamic Web Fundamentals &ndash; Eduar J Fajardo</title>
-  <meta name="description" content="WDD 131 &ndash; Dynamic Web Fundamentals course home page of Eduar J Fajardo: assignments, web development resources, HTML, CSS and JavaScript coursework from Valinhos, Brazil.">
+  <meta name="description" content="WDD 131 &ndash; Dynamic Web Fundamentals home page of Eduar J Fajardo, with HTML, CSS and JavaScript coursework and web development resources.">
   <meta name="author" content="Eduar J Fajardo">
 
-  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
@@ -17,12 +16,14 @@
   <script src="scripts/getdates.js" defer></script>
 </head>
 <body>
+  <!-- course title and menu -->
   <header>
     <span id="course-title">WDD 131 &ndash; Dynamic Web Fundamentals</span>
-    <nav aria-label="Course links">
+    <nav>
       <a href="https://www.linkedin.com/in/eduarjose-fajardo" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://byupw.instructure.com/" target="_blank" rel="noopener">Canvas</a>
       <a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/1-ne/3?lang=eng&amp;id=p7#p7" target="_blank" rel="noopener">Scripture</a>
+      <!-- placeholder until the final project is created -->
       <a href="#">Final Project</a>
     </nav>
   </header>
@@ -30,10 +31,11 @@
   <main>
     <h1>Eduar J Fajardo</h1>
 
+    <!-- first card: about me -->
     <section class="card">
       <h2>About Me</h2>
       <div class="card-body">
-        <img src="images/profile.jpg" alt="Portrait of Eduar J Fajardo" width="240" height="240" decoding="async">
+        <img src="images/profile.jpg" alt="Portrait of Eduar J Fajardo" width="240" height="240">
         <p>
           I am a Telecom &amp; Omnichannel Solutions Engineer and Backend Developer.
           I work with VoIP and PABX infrastructure, CRM integrations over APIs, and
@@ -44,7 +46,7 @@
 
       <h3>Valinhos, Brazil</h3>
       <div class="card-body">
-        <img src="images/brazil-flag.png" alt="Flag of Brazil" width="150" height="105" loading="lazy" decoding="async">
+        <img src="images/brazil-flag.png" alt="Flag of Brazil" width="150" height="105" loading="lazy">
         <p>
           Valinhos is a city in the state of S&atilde;o Paulo, Brazil, known for its purple
           figs and for being part of the Campinas metropolitan area, one of the main
@@ -53,6 +55,7 @@
       </div>
     </section>
 
+    <!-- second card: links I use to study -->
     <section class="card">
       <h2>Web Dev Resources</h2>
       <ul>
@@ -65,6 +68,7 @@
     </section>
   </main>
 
+  <!-- the year and the last modified date come from getdates.js -->
   <footer>
     <p>&copy; <span id="currentyear"></span> Eduar J Fajardo &ndash; Valinhos, Brazil</p>
     <p id="lastModified"></p>
