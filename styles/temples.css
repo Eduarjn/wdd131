@@ -1,0 +1,143 @@
+/* WDD 131 - W02 Temple Album - mobile first */
+
+:root {
+  --primary: #0b3d60;
+  --nav-bg: #062639;
+  --border: #d4d9de;
+  --text: #24292f;
+  --white: #ffffff;
+  --accent: #ffd24d;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--white);
+}
+
+header {
+  position: relative;
+  background-color: var(--primary);
+  color: var(--white);
+  text-align: center;
+  padding: 1rem;
+}
+
+.site-title {
+  display: block;
+  font-family: "Roboto Slab", Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+#menu-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: transparent;
+  color: var(--white);
+  border: 1px solid var(--white);
+  border-radius: 4px;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+}
+
+#menu-button:hover,
+#menu-button:focus-visible {
+  background-color: var(--white);
+  color: var(--nav-bg);
+}
+
+nav {
+  display: none;
+  flex-direction: column;
+  background-color: var(--nav-bg);
+  margin: 1rem -1rem -1rem;
+}
+
+nav.open {
+  display: flex;
+}
+
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.8rem 1rem;
+  border-bottom: 3px solid transparent;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  background-color: var(--white);
+  color: var(--nav-bg);
+  border-bottom-color: var(--accent);
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  margin: 0 0 1.5rem;
+  text-align: center;
+  font-family: "Roboto Slab", Georgia, serif;
+  font-size: 2rem;
+  color: var(--primary);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+figure {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+figcaption {
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary);
+  border-top: 1px solid var(--border);
+}
+
+footer {
+  background-color: var(--primary);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+footer p {
+  margin: 0.4rem 0;
+}
+
+#lastModified {
+  color: var(--accent);
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temple Album &ndash; WDD 131 &ndash; Eduar J Fajardo</title>
+  <meta name="description" content="A responsive temple picture album built with HTML, CSS Grid and JavaScript for the WDD 131 course.">
+  <meta name="author" content="Eduar J Fajardo">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/temples.css">
+  <link rel="stylesheet" href="styles/temples-large.css">
+  <script src="scripts/temples.js" defer></script>
+</head>
+<body>
+  <header>
+    <span class="site-title">Temple Album</span>
+
+    <button id="menu-button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+
+    <nav id="primary-nav">
+      <a href="#">Home</a>
+      <a href="#">Old</a>
+      <a href="#">New</a>
+      <a href="#">Large</a>
+      <a href="#">Small</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Temple Album</h1>
+
+    <div class="gallery">
+      <figure>
+        <img src="images/temple.svg" alt="Salt Lake Temple" width="800" height="600">
+        <figcaption>Salt Lake</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/temple.svg" alt="Campinas Brazil Temple" width="800" height="600" loading="lazy">
+        <figcaption>Campinas Brazil</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/temple.svg" alt="S&atilde;o Paulo Brazil Temple" width="800" height="600" loading="lazy">
+        <figcaption>S&atilde;o Paulo Brazil</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/temple.svg" alt="Rome Italy Temple" width="800" height="600" loading="lazy">
+        <figcaption>Rome Italy</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/temple.svg" alt="Laie Hawaii Temple" width="800" height="600" loading="lazy">
+        <figcaption>Laie Hawaii</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/temple.svg" alt="Mesa Arizona Temple" width="800" height="600" loading="lazy">
+        <figcaption>Mesa Arizona</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/temple.svg" alt="Bern Switzerland Temple" width="800" height="600" loading="lazy">
+        <figcaption>Bern Switzerland</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/temple.svg" alt="Cardston Alberta Temple" width="800" height="600" loading="lazy">
+        <figcaption>Cardston Alberta</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/temple.svg" alt="Tokyo Japan Temple" width="800" height="600" loading="lazy">
+        <figcaption>Tokyo Japan</figcaption>
+      </figure>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="currentyear"></span> Eduar J Fajardo &ndash; Valinhos, Brazil</p>
+    <p id="lastModified"></p>
+  </footer>
+</body>
+</html>
