@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filtered Temple Album &ndash; WDD 131 &ndash; Eduar J Fajardo</title>
+  <meta name="description" content="A filterable temple picture album built with JavaScript for the WDD 131 course, with cards generated from an array of temple data.">
+  <meta name="author" content="Eduar J Fajardo">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/filtered-temples.css">
+  <link rel="stylesheet" href="styles/filtered-temples-large.css">
+  <script src="scripts/filtered-temples.js" defer></script>
+</head>
+<body>
+  <header>
+    <span class="site-title">Temple Album</span>
+
+    <button id="menu-button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+
+    <nav id="primary-nav">
+      <a href="#temple-cards" data-filter="home" class="active" aria-current="true">Home</a>
+      <a href="#temple-cards" data-filter="old">Old</a>
+      <a href="#temple-cards" data-filter="new">New</a>
+      <a href="#temple-cards" data-filter="large">Large</a>
+      <a href="#temple-cards" data-filter="small">Small</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Temple Album</h1>
+
+    <p id="filter-status" role="status"></p>
+
+    <div class="gallery" id="temple-cards"></div>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="currentyear"></span> Eduar J Fajardo &ndash; Valinhos, Brazil</p>
+    <p id="lastModified"></p>
+  </footer>
+</body>
+</html>
