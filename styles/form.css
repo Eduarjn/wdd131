@@ -1,0 +1,303 @@
+/* WDD 131 - W05 - Product Review Form - Eduar J Fajardo */
+
+:root {
+  --primary: #0b3d60;
+  --primary-dark: #062639;
+  --accent: #ffd24d;
+  --star-off: #6b7280;
+  --star-on: #b45309;
+  --danger: #b3261e;
+  --text: #24292f;
+  --muted: #4b5563;
+  --border: #b8c0c8;
+  --surface: #f4f7fa;
+  --white: #ffffff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--surface);
+}
+
+/* visible only to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+}
+
+/* header and footer repeat across the two pages */
+header {
+  background-color: var(--primary);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-bottom: 4px solid var(--accent);
+}
+
+header h1 {
+  margin: 0;
+  font-family: "Roboto Slab", Georgia, serif;
+  font-size: 1.75rem;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* the form card */
+form,
+.confirmation {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.required-note {
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.req {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+/* every field is spaced the same way: proximity inside, air between */
+.field {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  border: 0;
+}
+
+.field > label,
+.field legend {
+  display: block;
+  margin-bottom: 0.4rem;
+  padding: 0;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.hint {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* text controls share one look so the form reads as one system */
+select,
+input[type="date"],
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.7rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+a.button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* star rating
+   the radios sit in reverse order in the HTML, so the general sibling
+   combinator can paint every star from the chosen one down to the first */
+.stars {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}
+
+.stars input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.stars label {
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--star-off);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.stars input:checked ~ label {
+  color: var(--star-on);
+}
+
+.stars input:focus-visible + label {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* checkboxes */
+.checks {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.check input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: var(--primary);
+}
+
+.check label {
+  margin: 0;
+  font-weight: 400;
+  color: var(--text);
+}
+
+/* submit */
+input[type="submit"],
+a.button {
+  display: inline-block;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--primary);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover,
+a.button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* confirmation page */
+.confirmation h2 {
+  margin-top: 0;
+  font-family: "Roboto Slab", Georgia, serif;
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+.confirmation h3 {
+  margin-bottom: 0.5rem;
+  font-family: "Roboto Slab", Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.count {
+  display: inline-block;
+  min-width: 2.25rem;
+  padding: 0.1rem 0.6rem;
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+  background-color: var(--primary);
+  border-radius: 999px;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.15rem 1rem;
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  background-color: var(--surface);
+  border-radius: 8px;
+}
+
+.summary dt {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.summary dd {
+  margin: 0 0 0.6rem;
+}
+
+footer {
+  background-color: var(--primary);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-top: 4px solid var(--accent);
+}
+
+footer p {
+  margin: 0.3rem 0;
+}
+
+/* wider screens: labels and values line up in two columns */
+@media (min-width: 600px) {
+  header h1 {
+    font-size: 2.1rem;
+  }
+
+  form,
+  .confirmation {
+    padding: 2rem;
+  }
+
+  .checks {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  input[type="submit"],
+  a.button {
+    width: auto;
+    min-width: 14rem;
+  }
+
+  .summary {
+    grid-template-columns: 11rem 1fr;
+  }
+
+  .summary dd {
+    margin-bottom: 0.15rem;
+  }
+}

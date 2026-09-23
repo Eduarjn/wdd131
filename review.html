@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Received &ndash; WDD 131 &ndash; Eduar J Fajardo</title>
+  <meta name="description" content="Confirmation page for the WDD 131 product review form, showing a summary of the submitted review and how many reviews have been completed.">
+  <meta name="author" content="Eduar J Fajardo">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Roboto+Slab:wght@700&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/form.css">
+  <script src="scripts/review.js" defer></script>
+  <script src="scripts/getdates.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Thank you for your review</h1>
+  </header>
+
+  <main>
+    <section class="confirmation">
+      <h2>Your review was received</h2>
+      <p>
+        Reviews completed so far:
+        <span id="reviewCount" class="count">0</span>
+      </p>
+
+      <!-- filled in by scripts/review.js from the query string -->
+      <h3>Summary</h3>
+      <dl id="summary" class="summary"></dl>
+
+      <p><a class="button" href="form.html">Write another review</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="currentyear"></span> &#128681; Eduar J Fajardo &ndash; Valinhos, Brazil</p>
+    <p id="lastModified"></p>
+  </footer>
+</body>
+</html>

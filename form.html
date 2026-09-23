@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Review &ndash; WDD 131 &ndash; Eduar J Fajardo</title>
+  <meta name="description" content="Product review form for WDD 131, where customers rate a product, give the installation date, mark the useful features and write a review.">
+  <meta name="author" content="Eduar J Fajardo">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Roboto+Slab:wght@700&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/form.css">
+  <script src="scripts/form.js" defer></script>
+  <script src="scripts/getdates.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Product review</h1>
+  </header>
+
+  <main>
+    <form method="get" action="review.html">
+      <p class="required-note">
+        Fields marked with <span class="req">*</span> are required.
+      </p>
+
+      <!-- product name: options are added by scripts/form.js -->
+      <div class="field">
+        <label for="productName">Product name <span class="req">*</span></label>
+        <select id="productName" name="productName" required>
+          <option value="" disabled selected>Select a Product ...</option>
+        </select>
+      </div>
+
+      <!-- overall rating: the inputs are in reverse order so the CSS can
+           fill every star up to the one the user picks -->
+      <fieldset class="field">
+        <legend>Overall rating <span class="req">*</span></legend>
+        <div class="stars">
+          <input type="radio" id="rating5" name="rating" value="5" required>
+          <label for="rating5"><span class="sr-only">5 stars</span><span aria-hidden="true">&starf;</span></label>
+
+          <input type="radio" id="rating4" name="rating" value="4">
+          <label for="rating4"><span class="sr-only">4 stars</span><span aria-hidden="true">&starf;</span></label>
+
+          <input type="radio" id="rating3" name="rating" value="3">
+          <label for="rating3"><span class="sr-only">3 stars</span><span aria-hidden="true">&starf;</span></label>
+
+          <input type="radio" id="rating2" name="rating" value="2">
+          <label for="rating2"><span class="sr-only">2 stars</span><span aria-hidden="true">&starf;</span></label>
+
+          <input type="radio" id="rating1" name="rating" value="1">
+          <label for="rating1"><span class="sr-only">1 star</span><span aria-hidden="true">&starf;</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="installDate">Date of installation <span class="req">*</span></label>
+        <input type="date" id="installDate" name="installDate" required>
+      </div>
+
+      <fieldset class="field">
+        <legend>Useful features</legend>
+        <p class="hint">Check all that apply.</p>
+        <div class="checks">
+          <div class="check">
+            <input type="checkbox" id="featureDurability" name="features" value="Durability">
+            <label for="featureDurability">Durability</label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="featureEase" name="features" value="Ease of use">
+            <label for="featureEase">Ease of use</label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="featurePrice" name="features" value="Price">
+            <label for="featurePrice">Price</label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="featureDesign" name="features" value="Design">
+            <label for="featureDesign">Design</label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="featureSupport" name="features" value="Customer support">
+            <label for="featureSupport">Customer support</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="review">Written review</label>
+        <textarea id="review" name="review" rows="5"
+          placeholder="What worked well? What would you change?"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="userName">User name</label>
+        <input type="text" id="userName" name="userName" autocomplete="name">
+      </div>
+
+      <input type="submit" value="Submit review">
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="currentyear"></span> &#128681; Eduar J Fajardo &ndash; Valinhos, Brazil</p>
+    <p id="lastModified"></p>
+  </footer>
+</body>
+</html>
