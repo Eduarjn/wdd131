@@ -1,0 +1,271 @@
+/* WDD 131 - W05 Project - Site Plan - Eduar J Fajardo */
+
+:root {
+  --deep: #0b3d60;
+  --signal: #0f6e5c;
+  --amber: #ffc94d;
+  --surface: #f4f7fa;
+  --ink: #1f2933;
+  --white: #ffffff;
+  --border: #d4d9de;
+
+  --font-head: "Roboto Slab", Georgia, serif;
+  --font-body: "Roboto", Arial, Helvetica, sans-serif;
+  --font-mono: "Roboto Mono", "Courier New", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--ink);
+  background-color: var(--surface);
+}
+
+/* header */
+header {
+  background-color: var(--deep);
+  color: var(--white);
+  text-align: center;
+  padding: 1.25rem 1rem;
+  border-bottom: 4px solid var(--amber);
+}
+
+#doc-label {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+}
+
+#doc-author {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  color: var(--amber);
+}
+
+/* main column */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  margin: 0 0 1.5rem;
+  text-align: center;
+  font-family: var(--font-head);
+  font-size: 2.25rem;
+  color: var(--deep);
+}
+
+/* cards */
+.card {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.75rem;
+}
+
+.card h2 {
+  margin: 0;
+  padding: 0.85rem 1.25rem;
+  background-color: var(--deep);
+  color: var(--white);
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-body p {
+  margin: 0 0 1rem;
+}
+
+.card-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* the site name, shown the way it would appear as a wordmark */
+.lead {
+  font-family: var(--font-head);
+  font-size: 1.75rem;
+  color: var(--signal);
+}
+
+.note {
+  font-size: 0.95rem;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--surface);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+}
+
+/* lists */
+.card-body ul {
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+}
+
+.card-body li {
+  margin-bottom: 0.5rem;
+}
+
+.scenarios li {
+  font-style: italic;
+}
+
+/* color table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+caption {
+  caption-side: bottom;
+  padding-top: 0.75rem;
+  font-size: 0.9rem;
+  text-align: left;
+  color: var(--ink);
+}
+
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+thead th {
+  background-color: var(--signal);
+  color: var(--white);
+  font-family: var(--font-body);
+}
+
+.swatch {
+  display: block;
+  width: 2.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+}
+
+.swatch-deep {
+  background-color: var(--deep);
+}
+
+.swatch-signal {
+  background-color: var(--signal);
+}
+
+.swatch-amber {
+  background-color: var(--amber);
+}
+
+.swatch-surface {
+  background-color: var(--surface);
+}
+
+.swatch-ink {
+  background-color: var(--ink);
+}
+
+/* typography samples */
+.font-sample {
+  border-left: 5px solid var(--signal);
+  background-color: var(--surface);
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1rem;
+  border-radius: 0 6px 6px 0;
+}
+
+.sample-text {
+  margin: 0 0 0.35rem;
+  font-size: 1.4rem;
+  color: var(--deep);
+}
+
+.sample-label {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* each block is set in the font it is describing */
+.sample-slab .sample-text {
+  font-family: var(--font-head);
+}
+
+.sample-sans .sample-text {
+  font-family: var(--font-body);
+}
+
+.sample-mono .sample-text {
+  font-family: var(--font-mono);
+  color: var(--signal);
+}
+
+/* wireframes */
+.wireframes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: var(--deep);
+}
+
+.wire {
+  width: 100%;
+  height: auto;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+/* footer */
+footer {
+  background-color: var(--deep);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-top: 4px solid var(--amber);
+}
+
+footer p {
+  margin: 0.3rem 0;
+}
+
+#doc-note {
+  font-size: 0.9rem;
+  color: var(--amber);
+}
+
+/* wider screens: the two wireframes sit side by side */
+@media (min-width: 700px) {
+  .wireframes {
+    grid-template-columns: 1fr 1.6fr;
+    gap: 2rem;
+  }
+}

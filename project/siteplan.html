@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Plan &ndash; SIP Sizer &ndash; Eduar J Fajardo</title>
+  <meta name="description" content="Website planning document for SIP Sizer, a VoIP trunk and bandwidth sizing tool built for the WDD 131 final project by Eduar J Fajardo.">
+  <meta name="author" content="Eduar J Fajardo">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&amp;family=Roboto+Slab:wght@700&amp;family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/siteplan.css">
+</head>
+<body>
+  <header>
+    <p id="doc-label">WDD 131 &ndash; Website Planning Document</p>
+    <p id="doc-author">Eduar J Fajardo</p>
+  </header>
+
+  <main>
+    <h1>SIP Sizer</h1>
+
+    <!-- 1. site name -->
+    <section class="card">
+      <h2>Site name</h2>
+      <div class="card-body">
+        <p class="lead">SIP Sizer</p>
+        <p>
+          SIP is the protocol that carries voice calls over the internet, and
+          <em>sizer</em> states plainly what the site does: it tells you how much
+          you need to buy. The two words together read as one idea, they are easy
+          to say out loud on a call with a client, and they keep the site findable
+          by the term the target audience already searches for.
+        </p>
+        <p class="note">Possible domain: <code>sip-sizer.com</code></p>
+      </div>
+    </section>
+
+    <!-- 2. site purpose -->
+    <section class="card">
+      <h2>Site purpose</h2>
+      <div class="card-body">
+        <p>
+          SIP Sizer helps small and mid&ndash;size businesses plan a VoIP phone
+          system before they sign a contract with a carrier. Many companies buy
+          more SIP trunks than they will ever use and overpay every month, while
+          others buy too few and drop calls at peak hours. The site provides three
+          services:
+        </p>
+        <ul>
+          <li>
+            A <strong>trunk calculator</strong> that turns the number of agents,
+            calls per hour and average call duration into a recommended number of
+            simultaneous channels.
+          </li>
+          <li>
+            A <strong>bandwidth estimator</strong> that shows how much internet
+            capacity those calls will consume with each common audio codec.
+          </li>
+          <li>
+            A <strong>glossary</strong> of telecom terms, so a business owner who
+            is not an engineer can read a carrier proposal and understand it.
+          </li>
+        </ul>
+        <p>
+          A quote request form lets a visitor send the result of a calculation to
+          an integrator and receive a formal proposal.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. scenarios -->
+    <section class="card">
+      <h2>Scenarios</h2>
+      <div class="card-body">
+        <p>
+          These are the questions a visitor arrives with. The content of the site
+          exists to answer them.
+        </p>
+        <ul class="scenarios">
+          <li>How many simultaneous SIP channels does a call center with 25 agents need?</li>
+          <li>How much internet bandwidth will 30 concurrent calls consume if I use the G.729 codec?</li>
+          <li>My carrier proposal says DID, PABX and Erlang. What do those terms mean?</li>
+          <li>How do I send my sizing result to an integrator so they can quote it?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. color schema -->
+    <section class="card">
+      <h2>Color schema</h2>
+      <div class="card-body">
+        <p>
+          Five colors, chosen to read as telecom infrastructure rather than
+          consumer software: a deep navy for structure, a signal green that the
+          audience already associates with a call in progress, and an amber used
+          only on the dark surfaces so the contrast stays safe.
+        </p>
+
+        <table>
+          <caption>Colors and where each one is applied</caption>
+          <thead>
+            <tr>
+              <th scope="col">Swatch</th>
+              <th scope="col">Name</th>
+              <th scope="col">Hex</th>
+              <th scope="col">Where it is used</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="swatch swatch-deep"></span></td>
+              <td>Deep navy</td>
+              <td><code>#0B3D60</code></td>
+              <td>Header and footer backgrounds, section heading bars, <code>h1</code></td>
+            </tr>
+            <tr>
+              <td><span class="swatch swatch-signal"></span></td>
+              <td>Signal green</td>
+              <td><code>#0F6E5C</code></td>
+              <td>Calculator buttons, table headers, links and result highlights</td>
+            </tr>
+            <tr>
+              <td><span class="swatch swatch-amber"></span></td>
+              <td>Amber</td>
+              <td><code>#FFC94D</code></td>
+              <td>Focus outlines and accents, only on the dark navy surfaces</td>
+            </tr>
+            <tr>
+              <td><span class="swatch swatch-surface"></span></td>
+              <td>Surface</td>
+              <td><code>#F4F7FA</code></td>
+              <td>Page background behind the white cards</td>
+            </tr>
+            <tr>
+              <td><span class="swatch swatch-ink"></span></td>
+              <td>Ink</td>
+              <td><code>#1F2933</code></td>
+              <td>Body text and list items</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. typography -->
+    <section class="card">
+      <h2>Typography</h2>
+      <div class="card-body">
+        <p>Three typefaces, each with one job.</p>
+
+        <div class="font-sample sample-slab">
+          <p class="sample-text">Trunk sizing for 25 agents</p>
+          <p class="sample-label">
+            <strong>Roboto Slab, bold.</strong> Headings only &ndash;
+            <code>h1</code>, <code>h2</code> and <code>h3</code>. The slab serifs
+            give the page a technical, instrument&ndash;panel weight.
+          </p>
+        </div>
+
+        <div class="font-sample sample-sans">
+          <p class="sample-text">Every paragraph, label and navigation link.</p>
+          <p class="sample-label">
+            <strong>Roboto, regular and bold.</strong> Body copy, navigation,
+            form labels and buttons. It stays readable at small sizes on a phone.
+          </p>
+        </div>
+
+        <div class="font-sample sample-mono">
+          <p class="sample-text">18 channels &middot; 1.37 Mbps &middot; G.729</p>
+          <p class="sample-label">
+            <strong>Roboto Mono, regular.</strong> Calculator output, hex color
+            codes and any figure the visitor may want to copy. Fixed width keeps
+            columns of numbers aligned.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. wireframes -->
+    <section class="card">
+      <h2>Wireframes</h2>
+      <div class="card-body">
+        <p>
+          Home page layout in two viewports. The calculator is the reason people
+          come, so it sits above the fold in both. On mobile the form fields and
+          the result stack in one column; on wider screens the result panel moves
+          beside the form, so a visitor can change an input and watch the number
+          update without scrolling.
+        </p>
+
+        <div class="wireframes">
+          <figure>
+            <figcaption>Mobile view &ndash; single column, 375px</figcaption>
+            <svg class="wire" viewBox="0 0 320 620" role="img" aria-labelledby="wire-mobile-title" font-family="Roboto, Arial, sans-serif">
+              <title id="wire-mobile-title">Wireframe of the SIP Sizer home page on a mobile phone, with a stacked single column layout</title>
+
+              <rect x="1" y="1" width="318" height="618" fill="#FFFFFF" stroke="#0B3D60" stroke-width="2"></rect>
+
+              <rect x="1" y="1" width="318" height="48" fill="#0B3D60"></rect>
+              <text x="16" y="31" fill="#FFFFFF" font-size="15">SIP Sizer</text>
+              <line x1="278" y1="19" x2="304" y2="19" stroke="#FFC94D" stroke-width="2"></line>
+              <line x1="278" y1="25" x2="304" y2="25" stroke="#FFC94D" stroke-width="2"></line>
+              <line x1="278" y1="31" x2="304" y2="31" stroke="#FFC94D" stroke-width="2"></line>
+
+              <rect x="16" y="64" width="288" height="72" fill="#F4F7FA" stroke="#0B3D60" stroke-width="1.5"></rect>
+              <text x="160" y="96" fill="#1F2933" font-size="13" text-anchor="middle">Hero: what the tool does</text>
+              <text x="160" y="116" fill="#1F2933" font-size="11" text-anchor="middle">headline + one sentence</text>
+
+              <rect x="16" y="152" width="288" height="216" fill="#FFFFFF" stroke="#0F6E5C" stroke-width="2"></rect>
+              <text x="160" y="176" fill="#1F2933" font-size="13" text-anchor="middle">Trunk calculator</text>
+              <rect x="32" y="190" width="256" height="26" fill="#FFFFFF" stroke="#1F2933" stroke-width="1"></rect>
+              <text x="40" y="207" fill="#1F2933" font-size="11">agents</text>
+              <rect x="32" y="224" width="256" height="26" fill="#FFFFFF" stroke="#1F2933" stroke-width="1"></rect>
+              <text x="40" y="241" fill="#1F2933" font-size="11">calls per hour</text>
+              <rect x="32" y="258" width="256" height="26" fill="#FFFFFF" stroke="#1F2933" stroke-width="1"></rect>
+              <text x="40" y="275" fill="#1F2933" font-size="11">average duration</text>
+              <rect x="32" y="292" width="256" height="30" fill="#0F6E5C"></rect>
+              <text x="160" y="312" fill="#FFFFFF" font-size="13" text-anchor="middle">Calculate</text>
+              <rect x="32" y="330" width="256" height="26" fill="#F4F7FA" stroke="#0F6E5C" stroke-width="1" stroke-dasharray="4 3"></rect>
+              <text x="160" y="348" fill="#1F2933" font-size="11" text-anchor="middle">result appears here</text>
+
+              <rect x="16" y="384" width="288" height="56" fill="#F4F7FA" stroke="#0B3D60" stroke-width="1.5"></rect>
+              <text x="160" y="417" fill="#1F2933" font-size="13" text-anchor="middle">Bandwidth by codec</text>
+
+              <rect x="16" y="456" width="288" height="56" fill="#F4F7FA" stroke="#0B3D60" stroke-width="1.5"></rect>
+              <text x="160" y="489" fill="#1F2933" font-size="13" text-anchor="middle">Glossary preview</text>
+
+              <rect x="16" y="528" width="288" height="40" fill="#F4F7FA" stroke="#0B3D60" stroke-width="1.5"></rect>
+              <text x="160" y="553" fill="#1F2933" font-size="13" text-anchor="middle">Quote request form</text>
+
+              <rect x="1" y="580" width="318" height="39" fill="#0B3D60"></rect>
+              <text x="160" y="605" fill="#FFFFFF" font-size="12" text-anchor="middle">Footer &#183; references</text>
+            </svg>
+          </figure>
+
+          <figure>
+            <figcaption>Larger viewport &ndash; two columns, 1000px and up</figcaption>
+            <svg class="wire" viewBox="0 0 640 460" role="img" aria-labelledby="wire-desktop-title" font-family="Roboto, Arial, sans-serif">
+              <title id="wire-desktop-title">Wireframe of the SIP Sizer home page on a desktop screen, with the calculator form and the result panel side by side</title>
+
+              <rect x="1" y="1" width="638" height="458" fill="#FFFFFF" stroke="#0B3D60" stroke-width="2"></rect>
+
+              <rect x="1" y="1" width="638" height="48" fill="#0B3D60"></rect>
+              <text x="24" y="31" fill="#FFFFFF" font-size="15">SIP Sizer</text>
+              <text x="392" y="31" fill="#FFFFFF" font-size="12">Calculator</text>
+              <text x="472" y="31" fill="#FFFFFF" font-size="12">Glossary</text>
+              <text x="548" y="31" fill="#FFFFFF" font-size="12">Contact</text>
+
+              <rect x="24" y="64" width="592" height="64" fill="#F4F7FA" stroke="#0B3D60" stroke-width="1.5"></rect>
+              <text x="320" y="92" fill="#1F2933" font-size="13" text-anchor="middle">Hero: what the tool does</text>
+              <text x="320" y="112" fill="#1F2933" font-size="11" text-anchor="middle">headline + one sentence</text>
+
+              <rect x="24" y="144" width="360" height="168" fill="#FFFFFF" stroke="#0F6E5C" stroke-width="2"></rect>
+              <text x="204" y="168" fill="#1F2933" font-size="13" text-anchor="middle">Trunk calculator</text>
+              <rect x="40" y="182" width="328" height="24" fill="#FFFFFF" stroke="#1F2933" stroke-width="1"></rect>
+              <text x="48" y="198" fill="#1F2933" font-size="11">agents</text>
+              <rect x="40" y="214" width="328" height="24" fill="#FFFFFF" stroke="#1F2933" stroke-width="1"></rect>
+              <text x="48" y="230" fill="#1F2933" font-size="11">calls per hour</text>
+              <rect x="40" y="246" width="328" height="24" fill="#FFFFFF" stroke="#1F2933" stroke-width="1"></rect>
+              <text x="48" y="262" fill="#1F2933" font-size="11">average duration</text>
+              <rect x="40" y="278" width="150" height="26" fill="#0F6E5C"></rect>
+              <text x="115" y="296" fill="#FFFFFF" font-size="13" text-anchor="middle">Calculate</text>
+
+              <rect x="400" y="144" width="216" height="168" fill="#F4F7FA" stroke="#0F6E5C" stroke-width="1" stroke-dasharray="4 3"></rect>
+              <text x="508" y="200" fill="#1F2933" font-size="13" text-anchor="middle">Result panel</text>
+              <text x="508" y="224" fill="#1F2933" font-size="11" text-anchor="middle">channels + bandwidth</text>
+              <text x="508" y="244" fill="#1F2933" font-size="11" text-anchor="middle">saved to localStorage</text>
+
+              <rect x="24" y="328" width="186" height="76" fill="#F4F7FA" stroke="#0B3D60" stroke-width="1.5"></rect>
+              <text x="117" y="371" fill="#1F2933" font-size="13" text-anchor="middle">Codec table</text>
+
+              <rect x="227" y="328" width="186" height="76" fill="#F4F7FA" stroke="#0B3D60" stroke-width="1.5"></rect>
+              <text x="320" y="371" fill="#1F2933" font-size="13" text-anchor="middle">Glossary preview</text>
+
+              <rect x="430" y="328" width="186" height="76" fill="#F4F7FA" stroke="#0B3D60" stroke-width="1.5"></rect>
+              <text x="523" y="371" fill="#1F2933" font-size="13" text-anchor="middle">Quote form</text>
+
+              <rect x="1" y="420" width="638" height="39" fill="#0B3D60"></rect>
+              <text x="320" y="445" fill="#FFFFFF" font-size="12" text-anchor="middle">Footer &#183; references</text>
+            </svg>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Eduar J Fajardo &ndash; Valinhos, Brazil</p>
+    <p id="doc-note">WDD 131 &ndash; W05 Project &ndash; Website Planning Document</p>
+  </footer>
+</body>
+</html>
