@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glossary &ndash; SIP Sizer</title>
+  <meta name="description" content="Twenty terms from a carrier proposal explained in plain language: SIP trunk, DID, erlang, grade of service, jitter, MOS, SBC and the rest.">
+  <meta name="author" content="Eduar J Fajardo">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&amp;family=Roboto+Slab:wght@600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/project.css">
+  <script src="scripts/site.js" defer></script>
+  <script src="scripts/glossary.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="bar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">((&bull;))</span>
+        <span>SIP Sizer</span>
+      </a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="index.html">Calculator</a></li>
+          <li><a href="codecs.html">Codecs</a></li>
+          <li><a class="current" aria-current="page" href="glossary.html">Glossary</a></li>
+          <li><a href="quote.html">Get a quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>The words in your carrier proposal</h1>
+      <p class="lead">
+        Telecom runs on acronyms, and a quote written in them is hard to argue
+        with. These are the twenty terms that decide what you pay and what your
+        calls sound like, written the way an engineer would explain them to a
+        friend who signs the cheques.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>Browse the terms</h2>
+
+      <div class="controls">
+        <div class="field field-grow">
+          <label for="search">Search the glossary</label>
+          <input type="search" id="search" name="search"
+                 placeholder="jitter, erlang, SBC ...">
+        </div>
+
+        <div class="field field-inline">
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic">
+            <option value="all" selected>All topics</option>
+            <option value="capacity">Capacity and traffic</option>
+            <option value="quality">Call quality</option>
+            <option value="plumbing">Signalling and plumbing</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="note" id="count" role="status" aria-live="polite"></p>
+
+      <dl class="glossary" id="glossary">
+        <div class="entry" data-topic="plumbing" id="sip">
+          <dt>SIP</dt>
+          <dd>
+            Session Initiation Protocol. The language phones use to set up and
+            tear down a call. It carries no audio at all &ndash; it negotiates
+            who is calling whom and which codec both ends will use, then hands
+            the conversation to RTP. When a call connects but has no sound, SIP
+            worked and RTP did not.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="plumbing" id="sip-trunk">
+          <dt>SIP trunk</dt>
+          <dd>
+            The link between your phone system and a carrier, sold as a bundle
+            of simultaneous channels. It replaces the physical copper lines a
+            business used to rent. You buy a channel count, not a line count,
+            and that number is the one the calculator produces.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="plumbing" id="pbx">
+          <dt>PBX or PABX</dt>
+          <dd>
+            Private Branch Exchange: the switchboard that belongs to your
+            company. It decides that extension 204 rings at a particular desk,
+            plays the hold music, and routes outside calls to the trunk. Modern
+            ones are software, often the open source Asterisk or FreeSWITCH.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="capacity" id="channel">
+          <dt>Channel, or concurrent call</dt>
+          <dd>
+            One conversation in progress. A trunk with eighteen channels can
+            carry eighteen conversations; the nineteenth caller gets a busy
+            signal. Carriers bill mostly by this number, which is why sizing it
+            correctly is worth real money every month.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="plumbing" id="did">
+          <dt>DID or DDI</dt>
+          <dd>
+            Direct Inward Dialing. A public phone number that rings a specific
+            extension without going through a receptionist. DIDs and channels
+            are priced separately and are unrelated: a company can own two
+            hundred DIDs and still need only twelve channels, because not
+            everyone is on the phone at once.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="capacity" id="erlang">
+          <dt>Erlang</dt>
+          <dd>
+            The unit of telephone traffic, named after the Danish mathematician
+            Agner Krarup Erlang. One erlang is one circuit occupied continuously
+            for one hour. Two hundred calls of three minutes in an hour is ten
+            erlangs, because that is ten hours of talking inside one hour of
+            clock time.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="capacity" id="busy-hour">
+          <dt>Busy hour</dt>
+          <dd>
+            The sixty minutes of the day when traffic peaks, usually mid morning
+            or just after lunch. Systems are sized for this hour and not for the
+            daily average, because an average hides exactly the moment the
+            system has to survive.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="capacity" id="gos">
+          <dt>Grade of service</dt>
+          <dd>
+            The share of calls you accept losing in the busy hour, written as a
+            decimal. A grade of service of 0.01 means one caller in a hundred
+            hears a busy signal. It is a business decision rather than a
+            technical one: a hospital and a pizza shop should not choose the
+            same number.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="capacity" id="erlang-b">
+          <dt>Erlang B</dt>
+          <dd>
+            The formula that converts traffic and a grade of service into a
+            channel count. It assumes a blocked caller gives up rather than
+            redialling immediately, which suits trunk sizing. Its sibling Erlang
+            C assumes callers wait in a queue, and is what you use for contact
+            centre staffing.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="capacity" id="cps">
+          <dt>CPS</dt>
+          <dd>
+            Calls per second, the rate at which new calls are set up. Distinct
+            from concurrent calls: an auto dialler can generate high CPS with
+            few simultaneous conversations. Carriers cap CPS separately, and
+            hitting that ceiling looks like random call failures rather than
+            busy signals.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="quality" id="codec">
+          <dt>Codec</dt>
+          <dd>
+            Coder and decoder: the method that turns sound into data and back.
+            The choice sets both the bandwidth per call and the ceiling on how
+            good the call can sound. G.711 sends everything uncompressed, G.729
+            compresses eight to one.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="plumbing" id="rtp">
+          <dt>RTP</dt>
+          <dd>
+            Real-time Transport Protocol, which carries the audio once SIP has
+            set the call up. It runs over UDP, so a late packet is simply
+            dropped rather than resent &ndash; audio that arrives too late to
+            play is worse than useless.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="quality" id="latency">
+          <dt>Latency</dt>
+          <dd>
+            How long a packet takes to travel one way. Under 150 milliseconds
+            nobody notices. Past about 250 the natural rhythm of conversation
+            breaks and both people start talking over each other, then
+            apologising.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="quality" id="jitter">
+          <dt>Jitter</dt>
+          <dd>
+            The variation in arrival time between packets that were sent evenly
+            spaced. Voice does not mind a slow network nearly as much as an
+            unpredictable one, because steady delay can be absorbed and
+            unpredictable delay cannot.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="quality" id="jitter-buffer">
+          <dt>Jitter buffer</dt>
+          <dd>
+            A small holding area at the receiving end that collects packets and
+            releases them at an even rate, trading a little extra delay for
+            smooth audio. Too small and the audio stutters; too large and the
+            call feels like a satellite link.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="quality" id="packet-loss">
+          <dt>Packet loss</dt>
+          <dd>
+            Packets that never arrive. One percent is usually inaudible because
+            the codec fills the gap by guessing; three percent sounds like a bad
+            mobile connection. Loss that arrives in bursts is far more damaging
+            than the same percentage spread evenly.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="quality" id="mos">
+          <dt>MOS</dt>
+          <dd>
+            Mean Opinion Score, from one to five, produced by asking listeners
+            to rate call quality. It is a human measurement rather than a
+            technical one. Above 4.0 is good, 3.6 is the point where people
+            start complaining, and nothing over a telephone reaches 5.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="plumbing" id="sbc">
+          <dt>SBC</dt>
+          <dd>
+            Session Border Controller: the firewall built for voice. It sits
+            between your system and the carrier, hides your internal topology,
+            fixes the NAT problems that break audio, and blocks the toll fraud
+            attempts that arrive within hours of a system appearing online.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="plumbing" id="nat">
+          <dt>NAT traversal</dt>
+          <dd>
+            The workarounds that let a phone behind a home router receive audio.
+            SIP was designed before address translation was universal and puts
+            internal addresses inside its messages, which the far end cannot
+            reach. STUN, ICE and an SBC exist to repair this.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="plumbing" id="e164">
+          <dt>E.164</dt>
+          <dd>
+            The international standard that makes a number unambiguous
+            worldwide: a plus sign, country code, then the national number, to a
+            maximum of fifteen digits. Storing numbers this way avoids the
+            classic bug where a call works from the office and fails from
+            abroad.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="quality" id="qos">
+          <dt>QoS and DSCP</dt>
+          <dd>
+            Quality of Service: telling the network that voice packets go first.
+            DSCP is the marking that carries the request, and voice normally
+            uses the value named Expedited Forwarding. It only works where you
+            control the equipment; the public internet ignores your markings.
+          </dd>
+        </div>
+
+        <div class="entry" data-topic="plumbing" id="failover">
+          <dt>Failover</dt>
+          <dd>
+            What happens when the primary trunk stops answering. Systems send a
+            periodic SIP OPTIONS message as a heartbeat and switch to a second
+            carrier when the replies stop. Worth testing deliberately, because
+            the first real failure is a poor time to discover the backup was
+            never configured.
+          </dd>
+        </div>
+      </dl>
+
+      <p class="empty-state" id="empty" hidden>
+        No term matches that search. Try a shorter word, or clear the topic
+        filter.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="bar">
+      <p>&copy; <span id="year"></span> SIP Sizer &ndash; a WDD 131 project by Eduar J Fajardo</p>
+      <p><a href="references.html">References</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a quote &ndash; SIP Sizer</title>
+  <meta name="description" content="Send your trunk sizing to an integrator and get a price back. The form collects the channel count, codec and features a carrier needs to quote properly.">
+  <meta name="author" content="Eduar J Fajardo">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&amp;family=Roboto+Slab:wght@600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/project.css">
+  <script src="scripts/site.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="bar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">((&bull;))</span>
+        <span>SIP Sizer</span>
+      </a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="index.html">Calculator</a></li>
+          <li><a href="codecs.html">Codecs</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a class="current" aria-current="page" href="quote.html">Get a quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Turn the number into a price</h1>
+      <p class="lead">
+        Integrators ask the same eight questions every time. Answering them up
+        front means the first reply you get is a quote instead of a
+        questionnaire, which usually saves a week.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>Quote request</h2>
+
+      <form action="thanks.html" method="get" class="quote-form">
+        <p class="required-note">
+          Fields marked with <span class="req">*</span> are required.
+        </p>
+
+        <fieldset>
+          <legend>Who you are</legend>
+
+          <div class="field">
+            <label for="company">Company <span class="req">*</span></label>
+            <input type="text" id="company" name="company" maxlength="80"
+                   autocomplete="organization" required>
+          </div>
+
+          <div class="field">
+            <label for="contact">Your name <span class="req">*</span></label>
+            <input type="text" id="contact" name="contact" maxlength="80"
+                   autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" maxlength="120"
+                   autocomplete="email" required>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" maxlength="30"
+                   autocomplete="tel" placeholder="+55 19 99999 0000">
+            <p class="hint">Optional. Only used if the written reply needs a follow up.</p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>What you need</legend>
+
+          <div class="field">
+            <label for="channels">Concurrent channels <span class="req">*</span></label>
+            <input type="number" id="channels" name="channels" min="1" max="2000"
+                   step="1" required>
+            <p class="hint">
+              The number from the <a href="index.html#calculator">trunk calculator</a>.
+            </p>
+          </div>
+
+          <div class="field">
+            <label for="preferred-codec">Preferred codec <span class="req">*</span></label>
+            <select id="preferred-codec" name="preferredCodec" required>
+              <option value="" disabled selected>Select a codec ...</option>
+              <option value="G.711">G.711 &ndash; best quality</option>
+              <option value="G.722">G.722 &ndash; HD voice</option>
+              <option value="G.726">G.726 &ndash; compressed</option>
+              <option value="Opus">Opus &ndash; adaptive</option>
+              <option value="iLBC">iLBC &ndash; lossy networks</option>
+              <option value="G.729">G.729 &ndash; lowest bandwidth</option>
+              <option value="Not sure">Not sure, advise me</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="start-date">Wanted by <span class="req">*</span></label>
+            <input type="date" id="start-date" name="startDate" required>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Current phone system <span class="req">*</span></legend>
+
+          <div class="radio-row">
+            <input type="radio" id="system-onprem" name="currentSystem"
+                   value="On-premise PBX" required>
+            <label for="system-onprem">On-premise PBX</label>
+          </div>
+          <div class="radio-row">
+            <input type="radio" id="system-cloud" name="currentSystem"
+                   value="Cloud PBX" required>
+            <label for="system-cloud">Cloud PBX</label>
+          </div>
+          <div class="radio-row">
+            <input type="radio" id="system-analog" name="currentSystem"
+                   value="Traditional phone lines" required>
+            <label for="system-analog">Traditional phone lines</label>
+          </div>
+          <div class="radio-row">
+            <input type="radio" id="system-none" name="currentSystem"
+                   value="Starting from nothing" required>
+            <label for="system-none">Starting from nothing</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Features you need</legend>
+          <p class="hint">Check all that apply.</p>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="feature-did" name="features" value="DID numbers">
+            <label for="feature-did">DID numbers</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="feature-failover" name="features" value="Carrier failover">
+            <label for="feature-failover">Carrier failover</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="feature-recording" name="features" value="Call recording">
+            <label for="feature-recording">Call recording</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="feature-sbc" name="features" value="Managed SBC">
+            <label for="feature-sbc">Managed SBC</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="feature-crm" name="features" value="CRM integration">
+            <label for="feature-crm">CRM integration</label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="notes">Anything else</label>
+          <textarea id="notes" name="notes" rows="4" maxlength="600"
+                    placeholder="Number of sites, existing carrier, deadlines ..."></textarea>
+        </div>
+
+        <div class="actions">
+          <input type="submit" class="button" value="Send quote request">
+        </div>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>What happens with this</h2>
+      <p>
+        This is a course project, so the form does not reach a real integrator.
+        It posts to a confirmation page that shows you exactly what a carrier
+        would receive, which is the useful part anyway: if you can answer these
+        eight questions, you are ready to negotiate.
+      </p>
+      <p>
+        Nothing is sent to a server and nothing is stored beyond your own
+        browser. The only thing kept is a count of how many requests you have
+        built, so the confirmation page can tell you.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="bar">
+      <p>&copy; <span id="year"></span> SIP Sizer &ndash; a WDD 131 project by Eduar J Fajardo</p>
+      <p><a href="references.html">References</a></p>
+    </div>
+  </footer>
+</body>
+</html>

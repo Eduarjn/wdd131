@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codec comparison &ndash; SIP Sizer</title>
+  <meta name="description" content="What each voice codec really costs on the wire, from G.711 at 80 kbps a call down to G.729 at 24 kbps, and what you give up in sound quality.">
+  <meta name="author" content="Eduar J Fajardo">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&amp;family=Roboto+Slab:wght@600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/project.css">
+  <script src="scripts/site.js" defer></script>
+  <script src="scripts/codec-data.js" defer></script>
+  <script src="scripts/codecs.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="bar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">((&bull;))</span>
+        <span>SIP Sizer</span>
+      </a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="index.html">Calculator</a></li>
+          <li><a class="current" aria-current="page" href="codecs.html">Codecs</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="quote.html">Get a quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>What a call actually costs on the wire</h1>
+      <p class="lead">
+        A codec vendor quotes you the audio bitrate. The network charges you for
+        the packets. G.729 advertises 8 kbps and consumes 24, because every 20
+        milliseconds it wraps twenty bytes of audio in forty bytes of headers.
+        Below is the honest number for each one.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>Bandwidth for the whole trunk</h2>
+      <p>
+        Set how many calls run at once and the table recalculates. The figures
+        count both directions, because a conversation is two streams.
+      </p>
+
+      <div class="controls">
+        <div class="field field-inline">
+          <label for="concurrent">Concurrent calls</label>
+          <input type="number" id="concurrent" name="concurrent" min="1"
+                 max="2000" step="1" value="30">
+        </div>
+
+        <div class="field field-inline">
+          <label for="sort">Sort by</label>
+          <select id="sort" name="sort">
+            <option value="bandwidth" selected>Bandwidth, lowest first</option>
+            <option value="quality">Sound quality, best first</option>
+            <option value="name">Name</option>
+          </select>
+        </div>
+
+        <div class="field field-inline checkbox-field">
+          <input type="checkbox" id="free-only" name="free-only">
+          <label for="free-only">Royalty free only</label>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="codec-table">
+          <caption id="table-caption">Bandwidth for 30 concurrent calls</caption>
+          <thead>
+            <tr>
+              <th scope="col">Codec</th>
+              <th scope="col">Per call</th>
+              <th scope="col">Whole trunk</th>
+              <th scope="col">Quality (MOS)</th>
+              <th scope="col">Licence</th>
+            </tr>
+          </thead>
+          <tbody id="codec-rows"></tbody>
+        </table>
+      </div>
+
+      <p class="note" id="summary"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Choosing between them</h2>
+      <div id="codec-cards" class="cards"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Quality is not linear with bandwidth</h2>
+
+      <div class="split">
+        <div>
+          <p>
+            MOS, the Mean Opinion Score, is what you get when you sit people in
+            a room and ask them to rate a call from one to five. It tops out
+            near 4.5 because even a perfect digital call through a telephone
+            handset does not sound like standing in the room together.
+          </p>
+          <p>
+            The useful part is the shape. G.711 scores 4.4 at 80 kbps. G.729
+            scores 3.9 at 24 kbps. You gave up a third of a point and saved
+            seventy percent of the bandwidth. For most offices that trade is
+            obviously worth taking, which is why G.729 refuses to die.
+          </p>
+          <p>
+            Where it stops being worth it is music on hold, fax, and anyone
+            calling from a noisy place. Compression assumes a human voice; feed
+            it something else and it produces noise.
+          </p>
+        </div>
+
+        <figure>
+          <img src="images/codec-tradeoff.svg" width="520" height="320"
+               loading="lazy" decoding="async"
+               alt="Scatter chart plotting sound quality against bandwidth for six codecs, showing G.729 at 24 kbps with a score of 3.9 and G.711 at 80 kbps with a score of 4.4.">
+          <figcaption>
+            Bandwidth on the horizontal axis, opinion score on the vertical.
+            The cheap codecs are further left than they are lower.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>The forty bytes nobody mentions</h2>
+      <p>
+        Every packet carries an IP header of 20 bytes, a UDP header of 8, and an
+        RTP header of 12. That is 40 bytes of addressing wrapped around each
+        slice of audio, fifty times a second. On G.711 those headers add 25
+        percent. On G.729, where the audio slice is only 20 bytes, the headers
+        are twice the size of the thing they are carrying &ndash; the overhead
+        triples the cost of the codec.
+      </p>
+      <p>
+        This is why the saving from switching to a compressed codec is always
+        less than the codec bitrates suggest, and why techniques that bundle
+        several calls into one packet exist at all. If your carrier quotes
+        bandwidth using the raw codec rate, the quote is wrong by the amount in
+        the table above.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="bar">
+      <p>&copy; <span id="year"></span> SIP Sizer &ndash; a WDD 131 project by Eduar J Fajardo</p>
+      <p><a href="references.html">References</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,628 @@
+/* SIP Sizer - WDD 131 final project - Eduar J Fajardo */
+
+:root {
+  --deep: #0b3d60;
+  --deep-dark: #062639;
+  --signal: #0f6e5c;
+  --amber: #ffc94d;
+  --danger: #b3261e;
+  --surface: #f4f7fa;
+  --ink: #1f2933;
+  --muted: #4b5563;
+  --border: #c7d0d9;
+  --white: #ffffff;
+
+  --font-head: "Roboto Slab", Georgia, serif;
+  --font-body: "Roboto", Arial, Helvetica, sans-serif;
+  --font-mono: "Roboto Mono", "Courier New", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  line-height: 1.65;
+  color: var(--ink);
+  background-color: var(--surface);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-head);
+  line-height: 1.25;
+  color: var(--deep);
+}
+
+a {
+  color: var(--signal);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 2px;
+}
+
+/* ---------- header and footer ---------- */
+
+.bar {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.site-header {
+  background-color: var(--deep);
+  border-bottom: 4px solid var(--amber);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.brand-mark {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--amber);
+}
+
+.site-header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-header nav a {
+  display: inline-block;
+  padding: 0.3rem 0;
+  color: #dbe6ef;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.site-header nav a:hover,
+.site-header nav a.current {
+  color: var(--white);
+  border-bottom-color: var(--amber);
+}
+
+.site-footer {
+  margin-top: 3rem;
+  background-color: var(--deep);
+  color: #dbe6ef;
+  border-top: 4px solid var(--amber);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--amber);
+}
+
+/* ---------- layout ---------- */
+
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem 1rem 0;
+}
+
+.hero {
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  margin: 0 0 0.75rem;
+  font-size: 1.9rem;
+}
+
+.lead {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 1.08rem;
+  color: var(--muted);
+}
+
+.panel {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.panel h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.35rem;
+}
+
+.panel p {
+  max-width: 68ch;
+}
+
+.note {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* two column prose and figure blocks */
+.split {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+figure {
+  margin: 0;
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- cards ---------- */
+
+.cards {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--signal);
+  border-radius: 8px;
+  padding: 1rem 1.15rem;
+}
+
+.card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+}
+
+.card p {
+  margin: 0 0 0.6rem;
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+.card-meta {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.card-watch {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* ---------- forms and controls ---------- */
+
+.field {
+  margin-bottom: 1.15rem;
+}
+
+.field label,
+legend {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: var(--deep);
+}
+
+.hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+input[type="number"],
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="search"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--signal);
+  border: 2px solid var(--signal);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0b5546;
+  border-color: #0b5546;
+}
+
+.button-ghost {
+  color: var(--signal);
+  background-color: var(--white);
+}
+
+.button-ghost:hover {
+  color: var(--white);
+}
+
+/* inline controls above a table or list */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 1.25rem;
+}
+
+.field-inline {
+  margin-bottom: 0;
+  min-width: 10rem;
+}
+
+.field-grow {
+  margin-bottom: 0;
+  flex: 1 1 16rem;
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-field label {
+  margin-bottom: 0;
+}
+
+.checkbox-field input {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--signal);
+}
+
+/* ---------- calculator ---------- */
+
+.calc-layout {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.calc-result {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.calc-result h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+.result-hint {
+  margin: 0;
+  color: var(--muted);
+}
+
+.result-grid {
+  margin: 0;
+}
+
+.result-grid div {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.result-grid dt {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.result-grid dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  color: var(--deep);
+}
+
+.result-grid .big {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--signal);
+}
+
+.verdict {
+  margin: 1rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--amber);
+  font-size: 0.95rem;
+}
+
+/* ---------- saved sizings ---------- */
+
+.saved-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.saved-item {
+  padding: 0.75rem 1rem;
+  background-color: var(--surface);
+  border-left: 5px solid var(--amber);
+  border-radius: 6px;
+}
+
+.saved-headline {
+  margin: 0;
+  font-weight: 700;
+  color: var(--deep);
+}
+
+.saved-detail {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.saved-empty {
+  color: var(--muted);
+}
+
+/* ---------- codec table ---------- */
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.codec-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 34rem;
+}
+
+.codec-table caption {
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+  text-align: left;
+  color: var(--deep);
+}
+
+.codec-table th,
+.codec-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.codec-table thead th {
+  background-color: var(--deep);
+  color: var(--white);
+  border-bottom: 0;
+}
+
+.codec-table tbody th {
+  font-family: var(--font-head);
+  color: var(--deep);
+}
+
+.codec-table .numeric {
+  font-family: var(--font-mono);
+}
+
+/* ---------- glossary ---------- */
+
+.glossary {
+  margin: 0;
+}
+
+.entry {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.entry dt {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--deep);
+}
+
+.entry dd {
+  margin: 0.35rem 0 0;
+  max-width: 70ch;
+}
+
+.empty-state {
+  padding: 1rem;
+  background-color: var(--surface);
+  border-left: 5px solid var(--danger);
+  border-radius: 6px;
+  color: var(--muted);
+}
+
+/* ---------- quote form ---------- */
+
+.quote-form fieldset {
+  margin: 0 0 1.5rem;
+  padding: 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.quote-form legend {
+  padding: 0 0.5rem;
+  font-family: var(--font-head);
+  font-weight: 700;
+}
+
+.required-note {
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.req {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.radio-row,
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.radio-row input,
+.checkbox-row input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: var(--signal);
+}
+
+.radio-row label,
+.checkbox-row label {
+  margin-bottom: 0;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+/* ---------- confirmation summary ---------- */
+
+.summary {
+  display: grid;
+  gap: 0.15rem 1.25rem;
+  margin: 0 0 1.5rem;
+  padding: 1.15rem;
+  background-color: var(--surface);
+  border-radius: 8px;
+}
+
+.summary dt {
+  font-weight: 700;
+  color: var(--deep);
+}
+
+.summary dd {
+  margin: 0 0 0.6rem;
+}
+
+/* ---------- wider screens ---------- */
+
+@media (min-width: 720px) {
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .panel {
+    padding: 2rem;
+  }
+
+  .split {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .calc-layout {
+    grid-template-columns: 1.1fr 1fr;
+    align-items: start;
+  }
+
+  .summary {
+    grid-template-columns: 12rem 1fr;
+  }
+
+  .summary dd {
+    margin-bottom: 0.15rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

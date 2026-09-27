@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIP Sizer &ndash; Trunk and bandwidth planning for VoIP</title>
+  <meta name="description" content="Work out how many SIP channels a phone system needs and how much bandwidth they will use, before you sign a contract with a carrier.">
+  <meta name="author" content="Eduar J Fajardo">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&amp;family=Roboto+Slab:wght@600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/project.css">
+  <script src="scripts/site.js" defer></script>
+  <script src="scripts/codec-data.js" defer></script>
+  <script src="scripts/calculator.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="bar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">((&bull;))</span>
+        <span>SIP Sizer</span>
+      </a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a class="current" aria-current="page" href="index.html">Calculator</a></li>
+          <li><a href="codecs.html">Codecs</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="quote.html">Get a quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Size your SIP trunks before you sign the contract</h1>
+      <p class="lead">
+        Most small businesses guess. They buy thirty channels for a team of
+        fifteen and overpay every month, or they buy eight and lose calls every
+        Monday morning. The number you need is not a guess &ndash; it comes out
+        of a formula that telecom engineers have used since 1917.
+      </p>
+    </section>
+
+    <section class="panel" id="calculator">
+      <h2>Trunk calculator</h2>
+      <p>
+        Enter how your phones are actually used during the busiest hour of the
+        day. The busy hour is what the system has to survive; an average across
+        the whole day will always undersize it.
+      </p>
+
+      <div class="calc-layout">
+        <form id="trunk-form" class="calc-form" novalidate>
+          <div class="field">
+            <label for="agents">People making or taking calls</label>
+            <input type="number" id="agents" name="agents" min="1" max="10000"
+                   step="1" value="25" required>
+            <p class="hint">Everyone who could be on a call at the same time.</p>
+          </div>
+
+          <div class="field">
+            <label for="calls">Calls per hour, in the busy hour</label>
+            <input type="number" id="calls" name="calls" min="1" max="100000"
+                   step="1" value="150" required>
+          </div>
+
+          <div class="field">
+            <label for="duration">Average call length, in minutes</label>
+            <input type="number" id="duration" name="duration" min="0.1"
+                   max="120" step="0.1" value="4" required>
+          </div>
+
+          <div class="field">
+            <label for="grade">Acceptable blocked calls</label>
+            <select id="grade" name="grade">
+              <option value="0.001">1 in 1000 &ndash; emergency services</option>
+              <option value="0.01" selected>1 in 100 &ndash; normal business</option>
+              <option value="0.02">2 in 100 &ndash; cost sensitive</option>
+              <option value="0.05">5 in 100 &ndash; internal only</option>
+            </select>
+            <p class="hint">
+              How often a caller may hear a busy signal. Fewer blocked calls
+              costs more channels.
+            </p>
+          </div>
+
+          <div class="field">
+            <label for="codec">Codec</label>
+            <select id="codec" name="codec">
+              <option value="g711" selected>G.711 &ndash; best quality</option>
+              <option value="g722">G.722 &ndash; HD voice</option>
+              <option value="g726">G.726 &ndash; compressed</option>
+              <option value="opus">Opus &ndash; adaptive</option>
+              <option value="ilbc">iLBC &ndash; lossy networks</option>
+              <option value="g729">G.729 &ndash; lowest bandwidth</option>
+            </select>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="button">Calculate</button>
+            <button type="button" class="button button-ghost" id="save-result">
+              Save this result
+            </button>
+          </div>
+        </form>
+
+        <div class="calc-result" id="result" role="status" aria-live="polite">
+          <h3>Result</h3>
+          <p class="result-hint" id="result-hint">
+            Press calculate to size this system.
+          </p>
+
+          <dl class="result-grid" id="result-grid" hidden>
+            <div>
+              <dt>Channels needed</dt>
+              <dd class="big" id="out-channels">&mdash;</dd>
+            </div>
+            <div>
+              <dt>Offered traffic</dt>
+              <dd id="out-traffic">&mdash;</dd>
+            </div>
+            <div>
+              <dt>Real blocking at that size</dt>
+              <dd id="out-blocking">&mdash;</dd>
+            </div>
+            <div>
+              <dt>Bandwidth, both directions</dt>
+              <dd id="out-bandwidth">&mdash;</dd>
+            </div>
+            <div>
+              <dt>Channel utilisation</dt>
+              <dd id="out-utilisation">&mdash;</dd>
+            </div>
+          </dl>
+
+          <p class="verdict" id="out-verdict" hidden></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="saved">
+      <h2>Saved sizings</h2>
+      <p>
+        Results you save stay in this browser, so you can compare a few
+        scenarios before you decide. Nothing is sent anywhere.
+      </p>
+      <ul class="saved-list" id="saved-list"></ul>
+      <button type="button" class="button button-ghost" id="clear-saved" hidden>
+        Clear saved sizings
+      </button>
+    </section>
+
+    <section class="panel">
+      <h2>What the calculator is doing</h2>
+
+      <div class="split">
+        <div>
+          <p>
+            The traffic your phones offer is measured in <strong>erlangs</strong>.
+            One erlang is one conversation running for one hour. Twenty five
+            people who make 150 calls of four minutes in the busy hour offer
+            ten erlangs of traffic, because 150 calls multiplied by four minutes
+            is 600 minutes of talking inside a sixty minute window.
+          </p>
+          <p>
+            Ten erlangs does not mean ten channels. Calls do not arrive politely
+            spaced out; they clump. The <strong>Erlang B</strong> formula answers
+            the real question: given this much traffic, how many channels do I
+            need so that only one caller in a hundred finds them all busy? For
+            ten erlangs at one percent, the answer is eighteen.
+          </p>
+          <p>
+            That gap between ten and eighteen is the whole point. Size by
+            intuition and you will be wrong in one direction or the other.
+          </p>
+        </div>
+
+        <figure>
+          <img src="images/sip-trunk-diagram.svg" width="520" height="300"
+               loading="lazy" decoding="async"
+               alt="Diagram showing desk phones connected to an on-site PBX, which connects over a SIP trunk carrying a fixed number of channels to a carrier, and from there to the public telephone network.">
+          <figcaption>
+            Each simultaneous call occupies one channel of the trunk. The trunk
+            is what you rent, and channels are what you run out of.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="split">
+        <figure>
+          <img src="images/erlang-curve.svg" width="520" height="320"
+               loading="lazy" decoding="async"
+               alt="Line chart showing blocking probability falling steeply as channels are added, from about twenty one percent at ten channels down to under one percent at eighteen channels, for ten erlangs of offered traffic.">
+          <figcaption>
+            Blocking against channel count for ten erlangs. The curve falls off
+            a cliff, then flattens.
+          </figcaption>
+        </figure>
+
+        <div>
+          <p>
+            The shape of that curve explains why buying &ldquo;a few extra just
+            in case&rdquo; is usually waste. Going from ten channels to eighteen
+            takes blocking from about twenty one percent down to seven tenths of
+            one percent. Going from eighteen to twenty five barely moves it, but
+            you pay for every one of those seven channels every month.
+          </p>
+          <p>
+            It also explains why large systems are cheaper per person. A hundred
+            erlangs needs 117 channels, not ten times the eighteen. Traffic
+            averages out as it grows, which telecom engineers call the
+            <a href="glossary.html#gos">grade of service</a> advantage of scale.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel next-steps">
+      <h2>Next steps</h2>
+      <div class="cards">
+        <article class="card">
+          <h3><a href="codecs.html">Compare codecs</a></h3>
+          <p>
+            The channel count is only half the bill. A G.711 call uses more than
+            three times the bandwidth of a G.729 call. See what each one costs
+            you and what it costs the person listening.
+          </p>
+        </article>
+        <article class="card">
+          <h3><a href="glossary.html">Read the glossary</a></h3>
+          <p>
+            Carrier proposals are written in acronyms. DID, SBC, CPS, E.164.
+            Twenty terms explained in plain language, so you can read a quote
+            without nodding along.
+          </p>
+        </article>
+        <article class="card">
+          <h3><a href="quote.html">Send your sizing out</a></h3>
+          <p>
+            When you know the number, take it to an integrator. The form
+            collects what they will ask for anyway, so the first reply is a
+            price instead of a questionnaire.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="bar">
+      <p>&copy; <span id="year"></span> SIP Sizer &ndash; a WDD 131 project by Eduar J Fajardo</p>
+      <p><a href="references.html">References</a></p>
+    </div>
+  </footer>
+</body>
+</html>

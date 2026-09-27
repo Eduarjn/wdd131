@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request received &ndash; SIP Sizer</title>
+  <meta name="description" content="Confirmation of a SIP Sizer quote request, showing the channel count, codec and features exactly as a carrier would receive them.">
+  <meta name="author" content="Eduar J Fajardo">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&amp;family=Roboto+Slab:wght@600;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/project.css">
+  <script src="scripts/site.js" defer></script>
+  <script src="scripts/thanks.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="bar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">((&bull;))</span>
+        <span>SIP Sizer</span>
+      </a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="index.html">Calculator</a></li>
+          <li><a href="codecs.html">Codecs</a></li>
+          <li><a href="glossary.html">Glossary</a></li>
+          <li><a href="quote.html">Get a quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Request received</h1>
+      <p class="lead" id="intro">
+        Here is your request, laid out the way an integrator would read it.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2>What a carrier would see</h2>
+      <dl class="summary" id="summary"></dl>
+
+      <div class="actions">
+        <a class="button" href="quote.html">Build another request</a>
+        <a class="button button-ghost" href="index.html">Back to the calculator</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Before you send this for real</h2>
+      <p>
+        Ask every carrier for the same three things and the quotes become
+        comparable: the price per channel per month, the price per minute for
+        calls outside the bundle, and the notice period to cancel. Vendors
+        rarely present all three in the same place, because the cheap headline
+        number is usually funded by one of the other two.
+      </p>
+      <p>
+        Ask also whether the channel count is a hard cap or a burstable one. A
+        hard cap gives busy signals; a burstable trunk gives a surprise invoice.
+        Which of those you prefer is a real decision, and it is better made
+        before the contract than after.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="bar">
+      <p>&copy; <span id="year"></span> SIP Sizer &ndash; a WDD 131 project by Eduar J Fajardo</p>
+      <p><a href="references.html">References</a></p>
+    </div>
+  </footer>
+</body>
+</html>
